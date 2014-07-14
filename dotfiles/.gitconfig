@@ -1,0 +1,11 @@
+[user]
+    name = "meisterluk"
+    email = "admin@lukas-prokop.at"
+    signingkey = 0xD987D895
+
+[alias]
+    co = "checkout"
+    st = "stash"
+    df = "diff --color"
+    lg = !git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+

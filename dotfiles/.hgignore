@@ -1,0 +1,55 @@
+syntax: ignore
+
+.hgignore
+
+## rendy
+build
+materials
+tests
+test_app
++workout
+versions
+
+## Vim
+*~
+
+## Python
+*.pyc
+*.pyo
+
+# Packages
+*.egg
+*.egg-info
+dist
+build
+eggs
+parts
+bin
+develop-eggs
+.installed.cfg
+
+# Installer logs
+pip-log.txt
+
+# Unit test / coverage reports
+.coverage
+.tox
+
+## C++
+# Compiled Object files
+*.slo
+*.lo
+*.o
+
+# Compiled Dynamic libraries
+*.so
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+
+## LaTeX
+*.dvi
+*.out
+*.aux

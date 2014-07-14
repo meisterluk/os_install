@@ -1,0 +1,20 @@
+[paths]
+default = http://bitbucket.org/meisterluk/
+
+[ui]
+username = meisterluk <admin@lukas-prokop.at>
+debug = true
+verbose = true
+strict = true
+timeout = 600
+# merge = hgmergevim
+
+[email]
+from = meisterluk <admin@lukas-prokop.at>
+bbc = admin@lukas-prokop.at
+method = /usr/sbin/sendmail
+
+[diff]
+ignoreblanklines = true
+
+# vim: ft=config
