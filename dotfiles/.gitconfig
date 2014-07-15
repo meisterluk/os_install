@@ -1,11 +1,24 @@
 [user]
     name = "meisterluk"
     email = "admin@lukas-prokop.at"
-    signingkey = 0xD987D895
-
+    signingkey = D987D895
+[credential]
+    helper = cache
+[merge]
+    tool = meld
+[branch]
+    autosetuprebase = always
+[core]
+    autocrlf = input
 [alias]
+    au = !git add $(git ls-files -o --exclude-standard)
     co = "checkout"
-    st = "stash"
     df = "diff --color"
+    gr = "!git --no-pager log --graph --full-history --all --color --pretty=tformat:'%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s%x20%x1b[33m(%an %ar)%x1b[0m' | head -n 20"
+    grl = "!git --no-pager log --graph --full-history --all --color --pretty=tformat:'%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s%x20%x1b[33m(%an %ar)%x1b[0m'"
     lg = !git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
-
+    sa = "!if [ '`git ls-files -d | wc -l`' -gt '0' ]; then git rm --quiet `git ls-files -d`; fi; git add .;"
+    st = "stash"
+    last = log -1 HEAD
+[push]
+    default = simple
