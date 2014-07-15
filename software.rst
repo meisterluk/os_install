@@ -32,6 +32,7 @@ Miscellaneous software
 * ack-grep
 * pwgen
 * rsync
+* Synergy
 
 Scientific stuff
 ----------------
