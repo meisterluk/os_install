@@ -9,10 +9,11 @@
 
 * Be sure to make your system secure
 
-    * Sensible data cannot be accessed without password
-    * Note the login password
-    * Consider making several UNIX users for other tasks
-    * Enable GPG encryption
+  * Sensible data cannot be accessed without password
+  * Write down the login password in case something happens to you
+  * Consider making several UNIX users for other tasks
+  * Enable GPG encryption
+  * Consider file system encryption, fingerprint readers or short session lock timespans
 
 * Keep your package manager up to date
 
@@ -20,7 +21,9 @@ Keyboard
 --------
 
 * german dead acute
+* francais clés morte
 * en_US international
+* jp_JA
 * Neo2
 
 * KTouch
@@ -46,7 +49,7 @@ Shell
 
 * zsh
 
-    * Get grml's zsh configuration
+  * Get grml's zsh configuration
 
 Network & Security
 ------------------
@@ -86,8 +89,8 @@ Music
 * VLC Media Player
 * Rhythmbox Music Player
 
-    * Read playlists
-    * Store live stream links?
+  * Read playlists
+  * Store live stream links?
 
 Development
 -----------
@@ -116,9 +119,9 @@ SCM
 
 * git
 
-    * git-all
-    * git-svn
-    * git GUI / gitg
+  * git-all
+  * git-svn
+  * git GUI / gitg
 
 * mercurial / hg
 * darcs
@@ -129,32 +132,32 @@ Compilers
 * LLVM
 * C/C++
 
-    * clang
-    * gcc
-    * c++/g++/cpp
-    * indent
+  * clang
+  * gcc
+  * c++/g++/cpp
+  * indent
 
 * C#
 
-    * MonoDevelop
+  * MonoDevelop
 
 * go compiler
 * JRE and SunJDK java or openJDK
 * python / python3
 
-    * ipython (possibly with notebook)
-    * glade?
-    * pypy
-    * pylint / pep8
-    * python-pip
+  * ipython (possibly with notebook)
+  * glade?
+  * pypy
+  * pylint / pep8
+  * python-pip
 
-        * flask
-        * jinja2
-        * numpy
-        * scipy
-        * pygments
-        * lxml
-        * sphinx
+    * flask
+    * jinja2
+    * numpy
+    * scipy
+    * pygments
+    * lxml
+    * sphinx
 
 * perl
 * php [debian: php5]
@@ -183,16 +186,16 @@ Browser
 * Torbrowser
 * Mozilla Firefox (http://getfirefox.com/)
 
-    * Import bookmarks from bookmarks/
-    * Organize privacy policy
-    * Flash plugin non-free for Firefox
-    * Firefox addons
+  * Import bookmarks from bookmarks/
+  * Organize privacy policy
+  * Flash plugin non-free for Firefox
+  * Firefox addons
 
-        * Firebug
-        * HTTPS-Everywhere
-        * URL Flipper
-        * HTML Validator
-        * Stylish
+    * Firebug
+    * HTTPS-Everywhere
+    * URL Flipper
+    * HTML Validator
+    * Stylish
 
 * Google Chrome or Chromium
 
@@ -206,8 +209,8 @@ Instant Messaging
 
 * pidgin
 
-    * Setup accounts: XMPP, ICQ, IRC
-    * OTR
+  * Setup accounts: XMPP, ICQ, IRC
+  * OTR
 
 * skype
 
@@ -216,14 +219,14 @@ News and RSS
 
 * Mozilla Thunderbird
 
-    * Import RSS-Feeds
+  * Import RSS-Feeds
 
-        * Put RSS-Feeds into appropriate folders
+    * Put RSS-Feeds into appropriate folders
 
-    * Newsgroups
+  * Newsgroups
 
-        * gmane
-        * TU Graz
+    * gmane
+    * TU Graz
 
 Games
 -----
