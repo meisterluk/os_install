@@ -36,6 +36,7 @@ Miscellaneous software
 * pwgen
 * rsync
 * Synergy
+* arandr
 
 Scientific stuff
 ----------------
@@ -58,6 +59,7 @@ Network & Security
 * nmap
 * ipcalc
 * gnupg
+* keepassx
 * VPN clients?
 
 Office
@@ -75,7 +77,7 @@ Images and Animation
 
 * GIMP
 * Photoshop
-* Inkscape
+* Inkscape (and `inkscapeslides <https://github.com/abourget/inkscapeslide>`_)
 * Blender
 * Agave (color combinations)
 * Dia Diagram Editor
