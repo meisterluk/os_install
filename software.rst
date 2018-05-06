@@ -1,234 +1,174 @@
-﻿This is a rendy system!
-=======================
+Operating system installation
+=============================
 
 :author:        meisterluk
-:lastchange:    2014.07.15
-:filename:      software.rst
-:purpose:       defines the installation process of a rendy system
+:base-system:   current xubuntu
+:lastchange:    2018.05.06
 
 
-* Be sure to make your system secure
+TODO rsync?
 
-  * Sensible data cannot be accessed without password
-  * Write down the login password in case something happens to you
-  * Consider making several UNIX users for other tasks
-  * Enable GPG encryption
-  * Consider file system encryption, fingerprint readers or short session lock timespans
-
-* Keep your package manager up to date
-
-Keyboard
---------
-
-* german dead acute
-* francais clés morte
-* en_US international
-* jp_JA
-* Neo2
-
-* KTouch
-* Klavaro
-
-Miscellaneous software
-----------------------
-
-* ack-grep
-* pwgen
-* rsync
-* Synergy
-* arandr
-
-Scientific stuff
-----------------
-
-* GeoGebra
-* sagemath
-* printer drivers?
-
-Shell
------
-
-* zsh
-
-  * Get grml's zsh configuration
-
-Network & Security
+Software selection
 ------------------
 
+* backups → restic
+* shell → zsh (with grml's configuration)
+* printing → printer drivers?
+
+Modern command line tools
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* ack-grep
+TODO
+
+Network & Security
+~~~~~~~~~~~~~~~~~~
+
 * Wireshark
-* nmap
-* ipcalc
-* gnupg
-* keepassx
-* VPN clients?
+* gnupg2
+* KeePassX
+* Network manager
 
-Office
-------
+  * (optional) network-manager-openconnect-gnome
+  * (optional) network-manager-pptp-gnome
+  * (optional) network-manager-vpnc
 
-* Adobe Reader
-* xournal
-* PDF Editor (if available in debian repo)
-* texlive: LaTeX2e / LaTeX3  or MikTeX
-* LuaTeX, ConTeXt
-* OpenOffice / LibreOffice
+* (optional) nmap
 
-Images and Animation
---------------------
+Device management
+~~~~~~~~~~~~~~~~~
 
-* GIMP
-* Photoshop
-* Inkscape (and `inkscapeslides <https://github.com/abourget/inkscapeslide>`_)
-* Blender
-* Agave (color combinations)
-* Dia Diagram Editor
-* Scribus
-* FontForge
-
-Music
------
-
-* Audacity
-* VLC Media Player
-* Rhythmbox Music Player
-
-  * Read playlists
-  * Store live stream links?
-
-Development
------------
-
-* hexdump
-* Kdiff3 / Meld
-* Arduino
-
-IDE
-~~~
-
-* geany
-* eclipse / Netbeans
-* notepad++
-* WingIDE
-* Sublime Text / Ninja IDE
-* vim
-
-    * Extend .vimrc with the given one
-    * gvim
-
-* PSPad
-
-SCM
-~~~
-
-* git
-
-  * git-all
-  * git-svn
-  * git GUI / gitg
-
-* mercurial / hg
-* darcs
-
-Compilers
-~~~~~~~~~
-
-* LLVM
-* C/C++
-
-  * clang
-  * gcc
-  * c++/g++/cpp
-  * indent
-
-* C#
-
-  * MonoDevelop
-
-* go compiler
-* JRE and SunJDK java or openJDK
-* python / python3
-
-  * ipython (possibly with notebook)
-  * glade?
-  * pypy
-  * pylint / pep8
-  * python-pip
-
-    * flask
-    * jinja2
-    * numpy
-    * scipy
-    * pygments
-    * lxml
-    * sphinx
-
-* perl
-* php [debian: php5]
-* clojure
-* io
-* ghc [Glasgow Haskell Compiler]
-* fpc [free pascal compiler]
-* ruby (irb)
-* scala
-* a68g [algol68g]
-* opendylan (is stable?)
-* lua
-
-    * löve
-
-Virtualization
---------------
-
-* VirtualBox OSE
-
-Browser
--------
-
-* Opera
-* Google Chrom[ium|e]
-* Torbrowser
-* Mozilla Firefox (http://getfirefox.com/)
-
-  * Import bookmarks from bookmarks/
-  * Organize privacy policy
-  * Flash plugin non-free for Firefox
-  * Firefox addons
-
-    * Firebug
-    * HTTPS-Everywhere
-    * URL Flipper
-    * HTML Validator
-    * Stylish
-
-* Google Chrome or Chromium
-
-System and sysadmin
--------------------
-
+* btrfs
 * gparted
 
-Instant Messaging
------------------
+Presentations
+~~~~~~~~~~~~~
+
+* impressive
+* arandr
+
+Browser
+~~~~~~~
+
+* Mozilla Firefox or Waterfox, with addons
+
+  * Privacy badger
+  * ghostery
+  * uBlock Origin
+
+* Google Chromium or Chrome
+* Torbrowser
+* Beaker browser
+
+Communication
+~~~~~~~~~~~~~
 
 * pidgin
 
-  * Setup accounts: XMPP, ICQ, IRC
-  * OTR
+  * IRC
+  * Jabber with OTR
 
-* skype
+* Signal
+* (optional) mumble?
 
-News and RSS
-------------
+Music
+~~~~~
 
-* Mozilla Thunderbird
+* Audacity
+* VLC Media Player
 
-  * Import RSS-Feeds
+Office
+~~~~~~
 
-    * Put RSS-Feeds into appropriate folders
+* PDF
 
-  * Newsgroups
+  * Adobe Reader
+  * xournal
+  * pdftk
+  * qpdf
+  * (optional) pdfedit [if available in debian repo]
 
-    * gmane
-    * TU Graz
+* texlive
+* LuaTeX, ConTeXt
+* LibreOffice
+* pandoc
+
+Images and Animation
+~~~~~~~~~~~~~~~~~~~~
+
+* GIMP, Photoshop, krita, Pencil2D
+* Pencil [prototyping], Dia Diagram Editor
+* Inkscape and `inkscapeslide <https://github.com/abourget/inkscapeslide>`_
+* Agave [color combinations]
+* (optional) FontForge
+* (optional) Scribus
+* (optional) Blender
+* (optional) xia
+
+Video
+~~~~~
+
+* OpenShot
+* kdenlive
+
+Virtualization
+~~~~~~~~~~~~~~
+
+* VirtualBox
+* Docker
+* (optional) vagrant
+
+Software development
+~~~~~~~~~~~~~~~~~~~~
+
+* jq
+* GNU make
+* git
+* meld
+* text editors / IDEs
+
+  * geany
+  * eclipse / Netbeans
+  * WingIDE
+  * Sublime Text
+  * vim
+
+* compilers
+
+  * C → llvm/clang
+  * C → gcc
+  * C# → MonoDevelop
+  * go → go
+  * Java → JRE, SunJDK java or openJDK
+  * python3
+
+    * pypy
+    * (optional) ipython
+    * (optional) glade
+    * python packages:
+
+      * pylint
+      * pep8
+      * numpy
+      * pygments
+      * lxml
+
+  * perl
+  * clojure → leiningen
+  * io
+  * Haskell → ghc [Glasgow Haskell Compiler]
+  * Pascal → fpc [free pascal compiler]
+  * ruby → ruby and irb
+  * scala
+  * Algol → a68g [algol68g]
+  * lua → lua5.3 and löve
+
+Mathematics
+~~~~~~~~~~~
+
+* GeoGebra
+* sagemath
+* (optional) Mathematica
 
 Games
 -----
@@ -255,13 +195,38 @@ Windows
 * Unreal Tournament
 * Minesweeper
 
-Testing
--------
+Checklist
+---------
 
-* Plugging in USB sticks
-* Fix paths in ~/.zshrc.rendy
-* Server is accessible?
-* Audio Output/Input works?
-* Switching keyboard layout
+Browser
+~~~~~~~
 
-Enjoy your rendy system! :-)
+* Quick Search set up?
+* Browser does not close tabs
+* Browser forgets privacy-relevant data
+* If required, hate yourself for installing a Flash plugin
+
+Devices
+~~~~~~~
+
+* USB sticks are detected
+* internet setup is stable?
+* Audio input/output works?
+
+Keyboard setup
+~~~~~~~~~~~~~~
+
+You can switch between the following keyboard layouts:
+
+* Austrian
+* Neo2
+* Japanese
+
+Security model
+~~~~~~~~~~~~~~
+
+* Always lock your screen before leaving your computer
+* Sensible data must only be stored encrypted (also backups!)
+* Your passwords are stored in a password manager - in case of emergency, your most trustworthy friend can access it
+* Enable other people to communicate over a secure channel with you
+* Always keep your software stack up to date
