@@ -21,11 +21,26 @@ wget -c -O .grml_zshrc https://git.grml.org/f/grml-etc-core/etc/zsh/zshrc
 move .grml_zshrc "$HOME/.grml_zshrc"
 
 # restic
-RESTIC_URL=$(curl -s https://api.github.com/repos/restic/restic/releases | | jq -r '.[0].assets | .[].browser_download_url' | grep -i 'linux_amd64')
+RESTIC_URL=$(curl -s https://api.github.com/repos/restic/restic/releases | jq -r '.[0].assets | .[].browser_download_url' | grep -i 'linux_amd64')
 wget -c -O restic.bz2 "$RESTIC_URL"
 bzip2 -d restic
 rm restic.bz2
-move restic* ~/bin/restic
+move restic* "$HOME/bin/restic"
+chmod a+x "$HOME/bin/restic"
+
+# ripgrep
+RIPGREP_URL=$(curl -s https://api.github.com/repos/BurntSushi/ripgrep/releases | jq -r '.[0].assets | .[].browser_download_url' | grep -i 'amd64.deb')
+wget -c -O ripgrep.deb "$RIPGREP_URL"
+sudo dpkg -i ripgrep.deb
+
+# exa
+wget -c -O exa.zip "https://github.com/ogham/exa/releases/download/v0.8.0/exa-linux-x86_64-0.8.0.zip"
+unzip exa.zip -d exa
+mv exa/exa* "$HOME/bin"
+chmod a+x "$HOME/bin/exa"
+
+# icdiff
+pip install icdiff
 
 # inkscapeslide
 git clone --depth 1 "https://github.com/abourget/inkscapeslide.git"

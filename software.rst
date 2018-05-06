@@ -6,8 +6,6 @@ Operating system installation
 :lastchange:    2018.05.06
 
 
-TODO rsync?
-
 Software selection
 ------------------
 
@@ -20,7 +18,10 @@ Modern command line tools
 
 * htop
 * ack-grep
-TODO
+* ripgrep
+* exa
+* icdiff
+* (optional) fzf
 
 Network & Security
 ~~~~~~~~~~~~~~~~~~
