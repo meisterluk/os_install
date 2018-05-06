@@ -18,6 +18,7 @@ Software selection
 Modern command line tools
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
+* htop
 * ack-grep
 TODO
 
@@ -27,6 +28,7 @@ Network & Security
 * Wireshark
 * gnupg2
 * KeePassX
+* curl
 * Network manager
 
   * (optional) network-manager-openconnect-gnome

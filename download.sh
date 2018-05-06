@@ -21,7 +21,7 @@ wget -c -O .grml_zshrc https://git.grml.org/f/grml-etc-core/etc/zsh/zshrc
 move .grml_zshrc "$HOME/.grml_zshrc"
 
 # restic
-RESTIC_URL=$(curl -s https://api.github.com/repos/restic/restic/releases | grep browser_download_url | grep 'linux_amd64' | head -n 1 | cut -d '"' -f 4)
+RESTIC_URL=$(curl -s https://api.github.com/repos/restic/restic/releases | | jq -r '.[0].assets | .[].browser_download_url' | grep -i 'linux_amd64')
 wget -c -O restic.bz2 "$RESTIC_URL"
 bzip2 -d restic
 rm restic.bz2
@@ -60,5 +60,5 @@ echo "please manually install golang from https://golang.org/dl/"
 # lua
 echo "please manually install lua from https://www.lua.org/versions.html"
 
-chdir "$old_pwd"
+cd "$old_pwd"
 rm -rf "$HOME/to_be_installed"
