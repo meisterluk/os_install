@@ -101,12 +101,13 @@ Images and Animation
 
 * GIMP, Photoshop, krita, Pencil2D
 * Pencil [prototyping], Dia Diagram Editor
-* Inkscape and `inkscapeslide <https://github.com/abourget/inkscapeslide>`_
+* Inkscape
 * Agave [color combinations]
 * (optional) FontForge
 * (optional) Scribus
 * (optional) Blender
 * (optional) xia
+* (optional) `inkscapeslide <https://github.com/abourget/inkscapeslide>`_
 
 Video
 ~~~~~
