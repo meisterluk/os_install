@@ -2,69 +2,46 @@ Operating system installation
 =============================
 
 :author:        meisterluk
-:base-system:   current xubuntu
-:lastchange:    2018.05.06
+:base-system:   xubuntu 20.04
+:lastchange:    2020-08-15
 
+Internet
+--------
 
-Software selection
-------------------
+Browser:
 
-* backups → restic
-* shell → zsh (with grml's configuration)
-* printing → printer drivers?
+* Mozilla Firefox #installed or Waterfox #app, with addons
 
-Modern command line tools
-~~~~~~~~~~~~~~~~~~~~~~~~~
+  * Privacy badger #addon
+  * ghostery #addon
+  * uBlock Origin #addon
 
-* htop
-* ack-grep
-* ripgrep
-* exa
-* icdiff
-* (optional) fzf
+* Google Chromium #apt
+* Torbrowser #apt
+* Beaker browser #app
 
-Network & Security
-~~~~~~~~~~~~~~~~~~
+SFTP:
 
+* Filezilla #apt
+
+Network analysis:
+
+* nmap  #apt
+* `simple, concise shell interface for interacting with REST services <https://github.com/micha/resty>`_
+* `HTTPie is a command line HTTP client <https://github.com/httpie/httpie>`_  #apt
 * Wireshark
 * gnupg2
 * KeePassX
 * curl
 * Network manager
 
-  * (optional) network-manager-openconnect-gnome
-  * (optional) network-manager-pptp-gnome
-  * (optional) network-manager-vpnc
+  * network-manager-openconnect-gnome
+  * network-manager-pptp-gnome
+  * network-manager-vpnc
 
-* (optional) nmap
+* nmap
 
-Device management
-~~~~~~~~~~~~~~~~~
-
-* btrfs
-* gparted
-
-Presentations
-~~~~~~~~~~~~~
-
-* impressive
-* arandr
-
-Browser
-~~~~~~~
-
-* Mozilla Firefox or Waterfox, with addons
-
-  * Privacy badger
-  * ghostery
-  * uBlock Origin
-
-* Google Chromium or Chrome
-* Torbrowser
-* Beaker browser
-
-Communication
-~~~~~~~~~~~~~
+Communication:
 
 * pidgin
 
@@ -72,16 +49,164 @@ Communication
   * Jabber with OTR
 
 * Signal
-* (optional) mumble?
+* mumble
 
-Music
-~~~~~
+Shell
+-----
 
-* Audacity
-* VLC Media Player
+* elvish  #apt
+* yash  #apt
+
+Many tools to consider:
+
+* alternatives for coreutils
+
+  * find: `fd is a simple, fast and user-friendly alternative to find <https://github.com/sharkdp/fd>`_
+  * grep: `the silver searcher <https://github.com/ggreer/the_silver_searcher>`_
+  * grep: `ack is a grep-like source code search tool <https://beyondgrep.com/>`_
+  * grep: `ripgrep is a line-oriented search tool that recursively searches your current directory for a regex pattern <https://github.com/BurntSushi/ripgrep>`_
+  * ssh: `bring your favorite shell wherever you go through the ssh without root access and system installations <https://github.com/xxh/xxh>`_
+  * diff: icdiff  #apt
+  * ls: `A modern version of ‘ls’ <https://github.com/ogham/exa>`_
+  * ls: `lsp lists files, like ls command, but it does not attempt to meet that archaic POSIX specification <https://github.com/dborzov/lsp>`
+  * cat: `A cat clone with syntax highlighting and Git integration <https://github.com/sharkdp/bat>`_
+  * cat: `ccat is the colorizing cat. It works similar to cat but displays content with syntax highlighting. <https://github.com/jingweno/ccat>`_
+  * cd: directory jumping (based on frequency)
+
+    * `z: jump around <https://github.com/rupa/z>`_
+    * `A command line tool which helps you navigate faster by learning your habits <https://github.com/skywind3000/z.lua>`_
+    * `A faster way to navigate your filesystem <https://github.com/ajeetdsouza/zoxide>`_
+
+* find CLI commands / handle shell history
+
+  * `navi <https://github.com/denisidoro/navi>`_
+  * fuzzy finder
+
+    * `fzf: interactive Unix filter for command-line that can be used with any list <https://github.com/junegunn/fzf>`_
+    * `shell plugin that seamlessly adds fuzzy search to tab completion of z <https://github.com/changyuheng/fz>`_
+
+* selector: `percol <https://github.com/mooz/percol>`_
+* blocking:
+
+  * `Simple, native and efficient local advertising blocker <https://github.com/tanrax/maza-ad-blocking>`_
+  * `Improve your security and privacy by blocking ads, tracking and malware domains <https://github.com/hectorm/hblock>`_
+
+* up:
+
+  * `up: Stop typing ../../.. endlessly <https://github.com/shannonmoeller/up>`_
+  * `Quickly go back to a specific parent directory in bash instead of typing "cd ../../.." redundantly <https://github.com/vigneshwaranr/bd>`_
+
+* information lookup
+
+  * CLI commands
+
+    * `how2: stackoverflow from the terminal <https://github.com/santinic/how2>`_
+    * `has: check presence of various command line tools on the PATH and reports their installed version <https://github.com/kdabir/has>`_
+    * `A fully-functional POSIX shell client for tldr. <https://github.com/raylee/tldr-sh-client>`_
+
+  * `curl wttr.in <https://github.com/chubin/wttr.in>`_
+
+* zsh specific:
+
+  * `oh-my-zsh <https://ohmyz.sh/>`_: I like the rjk, linuxonly, and trapd00r themes
+  * `git-extra-commands is a ZSH plugin that packages some extra git helper scripts I've found <https://github.com/unixorn/git-extra-commands>`_
+
+Version control
+---------------
+
+* `Little git extras <https://github.com/tj/git-extras>`_
+* `tiny CLI script that generates a .gitignore file for your projects <https://github.com/TejasQ/add-gitignore>`_
+
+Process control, power management, memory
+-----------------------------------------
+
+* htop #apt
+* `Coreutils Progress Viewer <https://github.com/Xfennec/progress>`_
+* `Atop is an ASCII full-screen performance monitor for Linux that is capable of reporting the activity of all processes, daily logging of system and process activity for long-term analysis, highlighting overloaded system resources by using colors, etc <https://www.atoptool.nl/>`_
+* `PowerTOP is a Linux* tool used to diagnose issues with power consumption and power management <https://github.com/fenrus75/powertop>`_
+* ncdu  #apt
+
+Virtualization
+--------------
+
+* VirtualBox  #apt
+* Docker
+* vagrant
+
+Backups
+-------
+
+* restic #apt
+* dupfiles #app
+
+Software development
+--------------------
+
+* `cloc counts blank lines, comment lines, and physical lines of source code in many programming languages <https://github.com/AlDanial/cloc>`_
+* meld
+
+Text editors / IDEs:
+
+* geany
+* eclipse / Netbeans
+* WingIDE
+* Sublime Text
+* vim
+
+Compilers:
+
+* C → llvm/clang
+* C → gcc
+* C# → MonoDevelop
+* go → go
+* Java → JRE, SunJDK java or openJDK
+* python3
+
+  * pypy
+  * (optional) ipython
+  * (optional) glade
+  * python packages:
+
+    * pylint
+    * pep8
+    * numpy
+    * pygments
+    * lxml
+
+* perl
+* clojure → leiningen
+* io
+* Haskell → ghc [Glasgow Haskell Compiler]
+* Pascal → fpc [free pascal compiler]
+* ruby → ruby and irb
+* scala
+* Algol → a68g [algol68g]
+* lua → lua5.3 and löve
+
+Device management
+-----------------
+
+* btrfs
+* gparted
+
+Presentations
+-------------
+
+* impressive
+* arandr
+* pdfpc
+* `inkscapeslide <https://github.com/abourget/inkscapeslide>`_
+
+File formats
+------------
+
+* `xsv is a command line program for indexing, slicing, analyzing, splitting and joining CSV files <https://github.com/BurntSushi/xsv>`_
+* jq  #apt
+* `bcal (Byte CALculator) is a REPL CLI utility for storage expression evaluation, unit conversion and address calculation <https://github.com/jarun/bcal>`_
+* pandoc
 
 Office
-~~~~~~
+------
 
 * PDF
 
@@ -89,12 +214,22 @@ Office
   * xournal
   * pdftk
   * qpdf
-  * (optional) pdfedit [if available in debian repo]
 
 * texlive
 * LuaTeX, ConTeXt
 * LibreOffice
-* pandoc
+
+Multimedia
+----------
+
+* `Quick and simple image processing at the command line <https://github.com/oguzhaninan/korkut>`_ using imagemagick and advanced selectors
+* `youtube-dl to download videos <https://github.com/ytdl-org/youtube-dl>`_
+
+Music
+~~~~~
+
+* Audacity
+* VLC Media Player
 
 Images and Animation
 ~~~~~~~~~~~~~~~~~~~~
@@ -103,11 +238,10 @@ Images and Animation
 * Pencil [prototyping], Dia Diagram Editor
 * Inkscape
 * Agave [color combinations]
-* (optional) FontForge
-* (optional) Scribus
-* (optional) Blender
-* (optional) xia
-* (optional) `inkscapeslide <https://github.com/abourget/inkscapeslide>`_
+* FontForge
+* Scribus
+* Blender
+* xia: Convert svg to html5 interactive pictures  #apt
 
 Video
 ~~~~~
@@ -115,64 +249,12 @@ Video
 * OpenShot
 * kdenlive
 
-Virtualization
-~~~~~~~~~~~~~~
-
-* VirtualBox
-* Docker
-* (optional) vagrant
-
-Software development
-~~~~~~~~~~~~~~~~~~~~
-
-* jq
-* GNU make
-* git
-* meld
-* text editors / IDEs
-
-  * geany
-  * eclipse / Netbeans
-  * WingIDE
-  * Sublime Text
-  * vim
-
-* compilers
-
-  * C → llvm/clang
-  * C → gcc
-  * C# → MonoDevelop
-  * go → go
-  * Java → JRE, SunJDK java or openJDK
-  * python3
-
-    * pypy
-    * (optional) ipython
-    * (optional) glade
-    * python packages:
-
-      * pylint
-      * pep8
-      * numpy
-      * pygments
-      * lxml
-
-  * perl
-  * clojure → leiningen
-  * io
-  * Haskell → ghc [Glasgow Haskell Compiler]
-  * Pascal → fpc [free pascal compiler]
-  * ruby → ruby and irb
-  * scala
-  * Algol → a68g [algol68g]
-  * lua → lua5.3 and löve
-
 Mathematics
-~~~~~~~~~~~
+-----------
 
 * GeoGebra
 * sagemath
-* (optional) Mathematica
+* Mathematica
 
 Games
 -----
