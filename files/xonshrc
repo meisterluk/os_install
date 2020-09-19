@@ -1,0 +1,170 @@
+import math
+import statistics
+
+# XONSH WIZARD START
+$AUTO_CD = '1'
+$AUTO_PUSHD = '1'
+$AUTO_SUGGEST = '1'
+$AUTO_SUGGEST_IN_COMPLETIONS = '1'
+$DYNAMIC_CWD_ELISION_CHAR = '…'
+$DYNAMIC_CWD_WIDTH = '45.0%'
+$XONSH_SHOW_TRACEBACK = '1'
+# XONSH WIZARD END
+
+def run(args):
+    import subprocess
+    proc = subprocess.Popen(args)
+    proc.wait()
+
+
+def replace_colors(arg):
+    import xonsh.ansi_colors
+    return xonsh.ansi_colors.ansi_partial_color_format(arg)
+
+def _sha(args, stdin=None):
+    """ Calculate hash of file """
+    import argparse
+
+    parser = argparse.ArgumentParser('sha', description="Calc hash sum of file")
+    parser.add_argument('file', nargs='?', help='File to be hashed')
+    parser.add_argument('-a', '--algorithm', default='sha256', help='The hash algorithm used')
+    ns = parser.parse_args(args)
+
+    import hashlib
+    try:
+        h = getattr(hashlib, ns.algorithm)()
+    except AttributeError:
+        print(f'No such algorithm. Chose from:\n{hashlib.algorithms_available}')
+        return
+    with open(args[0], 'rb') as f:
+        h.update(f.read())
+    val = h.hexdigest()
+    $(echo -n @(val.strip()) | clip)
+    print(f'{val} *{ns.file} ({ns.algorithm})')
+
+def _chars():
+    print('''
+♡ ♥ ❤ 💕 🧡 💓
+sup: ⁰¹²³⁴⁵⁶⁷⁸⁹ ⁺⁻⁼⁽⁾ ᴬᴮᴰᴱᴳᴴᴵᴶᴷᴸᴹᴺᴼᴾᴿᵀᵁⱽᵂ
+sub: ₀₁₂₃₄₅₆₇₈₉ ₊₋₌₍₎ ₐₑₕᵢⱼₖₗₘₙₒₚᵣₛₜᵤᵥₓ
+😀 😁 😂 😄 😅 😆 😃 😇 😉 😎 😊 🙂 😍 😘 😙 😚
+😛 😜 😝 🤓 😶 😐 😋 😌 😈 😏 😒 😓 😔 😑 😗 😲
+😕 😖 😞 😟 🤔 🙃 👍 💩 🖥️   💻 ⌨️  🖊️   ✒️  ✍️  🇦 🇹  🇯 🇵
+½ ¼ ¾ ⅐ ⅑ ⅒ ⅓ ⅔ ⅕ ⅖ ⅗ ⅘ ⅙ ⅚ ⅛ ⅜ ⅝ ⅞ ⅟ ↉ ‰ ‱ © ®
+⟷ ← → ↓ ↑ × ✖ ⋮ … · ・ ÷ - - — ↤ ↦ ↧ ↥ ⟻ ⟼
+⇔ ⇐ ⇒ ⇓ ⇑ ‖ ⟸ ⟹  ⤆ ⤇ ⇩ ⇧ ⟽  ⟾  ⟺
+∀ ∃ ∈ ∉ ⊂ ⊆ ⊇ ⊃ ⋀ ∧ ⋁ ∨ ≠ ≡ ≢ ≅ ≤ ≥ ∆ ⊲ ¬ ℚ ℕ ℤ ℂ ℝ ∞ ∑
+“en” ‘en’ „dt“ ‚dt‘ «Guillemets» ‹fr› 《アルバム》【quote】「kagikakko」  † € £ ¥ 円
+α β γ δ ε ζ η θ ι κ λ μ ν ξ ο π ρ ς σ τ υ φ χ ψ ω
+Α Β Γ Δ Ε Ζ Η Θ Ι Κ Λ Μ Ν Ξ Ο Π Ρ Σ Τ Υ Φ Χ Ψ Ω
+ā ē ī ō ū ä ë ï ö ü ß Ä Ë Ï Ö Ü  § … ♂ ♀
+✓ 🗸 ✔ ✔️ ☑️ 🗹 ✅ ⍻ ⭕ 🗴 🗙 ❌ ❎
+''')
+
+def _quotes():
+    print('''
+“English” ‘quotation’ marks
+„Deutsche“ (99-66) ‚Anführungszeichen‘ »angeführt« ›erklärt‹
+«Guillemets»
+TeX: ``english'' and ,,german``.
+''')
+
+def _inform(args):
+    proc = run(["zenity", "--info", "--text", *args])
+    proc.wait()
+
+def _cwd(args):
+    import os.path
+    if not os.path.exists(args[0]):
+        print("Sorry, path '{}' not found".format(args[0]))
+        return 1
+    os.chdir(args[0])
+    run(['find', '.', '-maxdepth', '1', '-type', 'd'])
+    print("\nCurrent working directory: " + os.getcwd())
+
+def _mkdir(args):
+    import os.path
+    if os.path.exists(args[0]) or os.path.isdir(args[0]):
+        print('This path already exists')
+        return 1
+    os.mkdir(args[0])
+    os.chdir(args[0])
+    print("\nCurrent working directory: " + os.getcwd())
+
+def _open(args):
+    import os.path
+    dst = args[0] if len(args) > 0 else '.'
+    if dst == '.' or (os.path.exists(dst) and os.path.isdir(dst)):
+        run(['nautilus', dst])
+    else:
+        run(['xdg-open', dst])
+
+def _up(args):
+    import os.path
+    levels = int(args[0])
+    names = []
+    for _ in range(levels):
+        names.append(os.path.basename(os.getcwd()))
+        os.chdir('..')
+    print('{} {}'.format(os.getcwd(), ' '.join(map(lambda n: '← ' + n, names[::-1]))))
+
+aliases['sha'] = _sha
+
+## directories
+$dev=$HOME + "/dev"
+
+## functions
+#aliases['observe'] = '''e:time $@a && e:zenity --info --text="Command finished"'''  # TODO
+
+aliases['mem'] = lambda x: $(ps -eo rss,pid,euser,args:100 --sort %mem | grep -v grep | grep -i @(x) | awk '{printf $1/1024 "MB"; $1=""; print }')
+aliases['quotes'] = _quotes
+aliases['chars'] = _chars
+aliases['py'] = 'python3 -u -B'
+#aliases['ac'] = lambda: $[bash; source ./venv/bin/activate; echo $0]
+aliases['fm'] = 'nautilus'
+aliases['viewpdf'] = 'evince'
+
+## my personal shorthands
+#  d := disk usage information / directory size
+#  f := find a file
+#  g := search for a substring in text files
+#  i := inform me with a message
+#  l := list current working directory content
+#  m := create folder and change to it
+#  o := # open file for viewing/editing or current folder in file explorer
+#  t := show file system tree with maxdepth 3
+aliases['l'] = 'echo -n "→ "; pwd; ls -la' # list current working directory content
+aliases['i'] = _inform
+aliases['d'] = 'df'   # disk usage information / directory size
+aliases['f'] = 'find . -iname'   # find a file
+aliases['g'] = 'rg --color=always -g "!venv"'  # search for a substring in text files
+aliases['c'] = _cwd
+aliases['t'] = 'find . -maxdepth 3'  # show file system tree with maxdepth 3
+aliases['m'] = _mkdir # create folder and change to it
+aliases['o'] = _open # open file for viewing/editing or current folder in file explorer
+aliases['up'] = _up
+
+## environment variables
+$BROWSER="firefox"
+$EDITOR="vim"
+$LC_ALL="en_US.UTF-8"
+
+# python config
+$PYTHONSTARTUP=$HOME + "/.py/start.py"
+
+# golang config
+#$GOPATH="/home/meisterluk/dev/go/"
+#$GOROOT="/opt/go/"
+#$PATH.append($GOROOT + "/bin")
+#$PATH.append($GOPATH + "/bin")
+##$GOARM=7
+##$GOMAXPROCS=4
+
+# lua config
+#$LUA_PATH="./?.lua"
+#$LUA_CPATH="./?.so"
+#$PATH.append("/opt/lua-5.3.5/src/")
+
+# rust config
+
+print(replace_colors('{RED}' + $(date --iso-8601=seconds).strip() + '     {BLUE}' + $(uname -o -i) + '{NO_COLOR}'))

@@ -1,1 +1,159 @@
+## zsh grml config
 source "$HOME/.zshrc.grml"
+# handle incompatibilities
+unalias up
+unalias l
+
+## directories
+hash -d go="$HOME/dev/go/src/github.com/meisterluk"
+
+## my personal shorthands
+# TODO find PowerShell equivalents
+#  d := disk usage information / directory size
+#  f := find a file
+#  g := search for a substring in text files
+#  i := inform me with a message
+#  l := list current working directory content
+#  m := create folder and change to it
+#  o := # open file for viewing/editing or current folder in file explorer
+#  t := show file system tree with maxdepth 3
+l() { pwd; ls -la }
+i() { zenity --info --text "$1" }
+d() { df }
+f() { find . -iname "$1" }
+alias g="rg --color=always -g \!venv"
+c() { cd "$1" && find . -maxdepth 1 -type d && echo "\nCurrent working directory: $PWD" }
+t() { find . -maxdepth 3 }
+m() { if [ -z "$1" ]; then echo "folder name required"; else mkdir "$1" && cd "$1"; fi }
+o() {
+  if [ -z "$1" ]; then
+    thunar "$PWD" &
+  else
+    if [ -d "$1" ]; then
+      thunar "$1" &
+    else
+      xdg-open "$@"
+    fi;
+  fi
+}
+
+## aliases
+alias py="python3"
+alias dcl="docker container ls --all"
+alias ds="docker exec -it \$(docker container ls | awk 'NR==2{print \$1}') bash"
+alias dup="docker-compose up --build --always-recreate-deps --remove-orphans"
+alias sile-docker='docker run --volume "$(pwd):/data" --user "$(id -u):$(id -g)" siletypesetter/sile:latest sile'
+alias ac="source ./venv/bin/activate"
+alias pcat="pygmentize -f terminal256 -O style=native -g"
+alias did="vim +'normal Go' +'r!date' ~/did.txt"
+
+## environment variables
+export BROWSER="firefox"
+export EDITOR="vim"
+export LC_ALL="en_US.UTF-8"
+
+export PATH="$PATH:$HOME/bin"
+
+## english vs german keyboard
+alias pzthon="python3"
+alias geanz="geany"
+alias rsznc="rsync --progress"
+
+## functions
+encrypt-file () {
+    gpg --symmetric --armor "$1"
+}
+pdfvim() {
+    echo "Running vim with PDF options";
+    vim -b "$@" -c "set statusline+=%o laststatus=2";
+}
+exifsetartist() {
+  if [ -z "$1" ] || [ -z "$2" ] || [ -z "$3" ] ; then
+    echo "usage: exifsetartist <artist> <input.jpg> <output.jpg>";
+    exit 2;
+  fi
+  exif --output="$3" --ifd="EXIF" --tag="Artist" --set-value="$1" "$2"
+}
+svg2plainsvg() {
+  inkscape "$1" --export-text-to-path --export-pdf=/tmp/tmp.pdf
+  inkscape -l "${1:r}.plain.svg" /tmp/tmp.pdf
+  rm /tmp/tmp.pdf
+}
+chars() {
+  # common unicode symbols
+  echo " ♡ ♥ ❤ 💕 🧡 💓 ";
+  echo " sup: ⁰¹²³⁴⁵⁶⁷⁸⁹ ⁺⁻⁼⁽⁾ ᴬᴮᴰᴱᴳᴴᴵᴶᴷᴸᴹᴺᴼᴾᴿᵀᵁⱽᵂ ";
+  echo " sub: ₀₁₂₃₄₅₆₇₈₉ ₊₋₌₍₎ ₐₑₕᵢⱼₖₗₘₙₒₚᵣₛₜᵤᵥₓ ";
+  echo " 😀 😁 😂 😄 😅 😆 😃 😇 😉 😎 😊 🙂 😍 😘 😙 😚";
+  echo " 😛 😜 😝 🤓 😶 😐 😋 😌 😈 😏 😒 😓 😔 😑 😗 😲 ";
+  echo " 😕 😖 😞 😟 🤔 🙃 👍 💩 🖥️   💻 ⌨️  🖊️   ✒️  ✍️  🇦 🇹  🇯 🇵 ";
+  echo " ½ ¼ ¾ ⅐ ⅑ ⅒ ⅓ ⅔ ⅕ ⅖ ⅗ ⅘ ⅙ ⅚ ⅛ ⅜ ⅝ ⅞ ⅟ ↉ ‰ ‱ © ® ";
+  echo " ⟷ ← → ↓ ↑ × ✖ ⋮ … · ・ ÷ - - — ↤ ↦ ↧ ↥ ⟻ ⟼ ";
+  echo " ⇔ ⇐ ⇒ ⇓ ⇑ ‖ ⟸ ⟹  ⤆ ⤇ ⇩ ⇧ ⟽  ⟾  ⟺ ";
+  echo " ∀ ∃ ∈ ∉ ⊂ ⊆ ⊇ ⊃ ⋀ ∧ ⋁ ∨ ≠ ≡ ≢ ≅ ≤ ≥ ∆ ⊲ ¬ ℚ ℕ ℤ ℂ ℝ ∞ ∑ ";
+  echo " “en” ‘en’ „dt“ ‚dt‘ «Guillemets» ‹fr› 《アルバム》【quote】「kagikakko」  † € £ ¥ 円 ";
+  echo " α β γ δ ε ζ η θ ι κ λ μ ν ξ ο π ρ ς σ τ υ φ χ ψ ω ";
+  echo " Α Β Γ Δ Ε Ζ Η Θ Ι Κ Λ Μ Ν Ξ Ο Π Ρ Σ Τ Υ Φ Χ Ψ Ω ";
+  echo " ā ē ī ō ū ä ë ï ö ü ß Ä Ë Ï Ö Ü  § … ♂ ♀ ";
+  echo " ✓ 🗸 ✔ ✔️ ☑️ 🗹 ✅ ⍻ ⭕ 🗴 🗙 ❌ ❎ ";
+}
+
+syslog() {
+  tail -f /var/log/syslog
+}
+quotes() {
+    echo " “English” ‘quotation’ marks "
+    echo " „Deutsche“ (99-66) ‚Anführungszeichen‘ »angeführt« ›erklärt‹ "
+    echo " «Guillemets» "
+    echo " TeX: ``english'' and ,,german``. "
+}
+lastmod() {
+    if [[ -z "$1" ]]; then
+      find . -exec stat \{\} --printf="%y\n" \; | sort -n -r | head -n 1
+    else
+      find "$@" -exec stat \{\} --printf="%y\n" \; | sort -n -r | head -n 1
+    fi
+}
+currency-euryen() {
+  wget -qO- "http://www.google.com/finance/converter?a=$1&from=eur&to=jpy" |  sed '/res/!d;s/<[^>]*>//g';
+}
+currency-yeneur() {
+  wget -qO- "http://www.google.com/finance/converter?a=$1&from=jpy&to=eur" |  sed '/res/!d;s/<[^>]*>//g';
+}
+currency-cconv() {
+  wget -qO- "http://www.google.com/finance/converter?a=$1&from=$2&to=$3" |  sed '/res/!d;s/<[^>]*>//g';
+}
+msg() {
+  MSG="$1";
+  CAPTION="$2";
+  if [[ $# -eq 0 ]] then MSG="Hello World"; CAPTION="Hi"; fi
+  if [[ $# -eq 1 ]] then CAPTION="$MSG"; fi
+
+  kdialog --caption "$2" --title "$2" --msgbox "$1"
+}
+wttr () {
+  curl -4 http://wttr.in/
+}
+observe() {
+    time "$@" && zenity --info --text="Command finished"
+}
+webp2png() {
+    dwebp "$1" -o "${1:r}.png"
+}
+mem()
+{
+    # via https://stackoverflow.com/a/20277787
+    ps -eo rss,pid,euser,args:100 --sort %mem | grep -v grep | grep -i $@ | awk '{printf $1/1024 "MB"; $1=""; print }'
+}
+website-backup() {
+    wget --mirror --convert-links --adjust-extension --page-requisites --no-parent "$1"
+}
+up() {
+  [ "${1/[^0-9]/}" == "$1" ] && {
+    local ups=""
+    for i in $(seq 1 $1); do
+      ups=$ups"../"
+    done
+    cd "$ups"
+  } || echo "usage: up INTEGER"
+}
